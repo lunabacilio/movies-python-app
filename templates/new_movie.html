@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nueva Película</title>
+</head>
+<body>
+    <h1>Nueva Película</h1>
+    <form action="/new_movie" method="post">
+        <label for="titulo">Name:</label>
+        <input type="text" id="titulo" name="titulo">
+        <label for="available">Availability:</label>
+        <select id="available" name="available">
+            <option value="True">Sí</option>
+            <option value="False">No</option>
+        </select>
+        <input type="submit" value="Agregar Película">
+    </form>
+    <div>
+        <a href="/" class="button">Back to home</a>
+    </div>
+</body>
+</html>
+

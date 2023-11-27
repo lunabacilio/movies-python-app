@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catálogo de Películas</title>
+    <style>
+        .pelicula {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Catálogo de Películas</h1>
+    {% for pelicula in peliculas %}
+        <div class="pelicula">
+            <h2>{{ pelicula.title }}</h2>
+            <p>Disponible: {{ 'Sí' if pelicula.available else 'No' }}</p>
+            <p>ID: {{ pelicula.id }}</p>
+            <p>Fecha: {{ pelicula.timestamp }}</p>
+        </div>
+    {% endfor %}
+    <div>
+        <a href="/" class="button">Back to home</a>
+    </div>
+</body>
+</html>
+

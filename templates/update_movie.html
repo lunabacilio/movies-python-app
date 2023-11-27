@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Movie</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "/update_movie", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("titulo=" + document.getElementById("name").value + "&available=" + document.getElementById("available").value);
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    window.location.href = "/success_update";
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <h1>Update Movie</h1>
+    <form onsubmit="submitForm(event);">
+        <label for="titulo">Name:</label>
+        <input type="text" id="titulo" name="titulo">
+        <label for="available">Availability:</label>
+        <select id="available" name="available">
+            <option value="True">Sí</option>
+            <option value="False">No</option>
+        </select>
+        <input type="submit" value="Agregar Película">
+    </form>
+</body>
+</html>
