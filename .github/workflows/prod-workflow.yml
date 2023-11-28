@@ -10,8 +10,9 @@ jobs:
       - name: Build & deploy application
         uses: actions/checkout@v4
       - run: |
+          docker ps
           docker rmi $(docker images -q)
-          docker kill $(docker ps -q)
+          docker container prune -f
           docker container ls -a
           docker build -t movies-python-app .
           docker run --name movies-app -d -p 80:5000 movies-python-app
