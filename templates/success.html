@@ -2,11 +2,41 @@
 <html>
 <head>
     <title>Success!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            margin: 20px 0;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Movie added successfully, please check the catalog</h1>
-    <div>
-        <a href="/catalog" class="button">Back to Catalog</a>
+    <div class="container">
+        <h1>Movie added successfully, please check the catalog</h1>
+        <div>
+            <a href="/catalog" class="button">Back to Catalog</a>
+        </div>
     </div>
 </body>
 </html>

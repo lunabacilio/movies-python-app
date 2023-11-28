@@ -62,6 +62,6 @@ def update(movie):
 def delete(theId):
     conn = sqlite3.connect('movies.db')
     cur = conn.cursor()
-    cur.execute("DELETE FROM movies WHERE id=?", (theId))
+    cur.execute("DELETE FROM movies WHERE id=?", (theId,))
     conn.commit()
     conn.close()
