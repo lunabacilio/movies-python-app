@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           docker ps
+          docker stop $(docker ps -a -q)
           docker image prune -f
           docker container prune -f
           docker container ls -a
