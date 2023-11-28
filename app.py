@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 
 import db, os, datetime
 from models import Movie
 #from db import insert
-from db import delete
+#from db import delete
 
 app = Flask(__name__)
 
