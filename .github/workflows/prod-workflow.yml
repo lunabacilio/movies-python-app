@@ -4,10 +4,14 @@ on:
     branches:
       - main
 jobs:
-  build:
+  deploy:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+      - name: Build & deploy application
       - run: |
-          ls 
-          ls -la
+          docker rmi $(docker images -q)
+          docker kill $(docker ps -q)
+          docker container ls -a
+          docker build -t movies-python-app .
+          docker run --name movies-app -d -p 80:5000 movies-python-app
