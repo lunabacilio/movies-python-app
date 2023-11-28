@@ -55,20 +55,13 @@ def view():
 def update(movie):
     conn = sqlite3.connect('movies.db')
     cur = conn.cursor()
-    cur.execute("UPDATE books SET available=?, title=? WHERE id=?", (movie.available, movie.title, movie.id))
+    cur.execute("UPDATE movies SET available=?, title=? WHERE id=?", (movie.available, movie.title, movie.id))
     conn.commit()
     conn.close()
 
 def delete(theId):
     conn = sqlite3.connect('movies.db')
     cur = conn.cursor()
-    cur.execute("DELETE FROM movies WHERE id=?", (theId,))
-    conn.commit()
-    conn.close()
-
-def deleteAll():
-    conn = sqlite3.connect('movies.db')
-    cur = conn.cursor()
-    cur.execute("DELETE FROM movies")
+    cur.execute("DELETE FROM movies WHERE id=?", (theId))
     conn.commit()
     conn.close()

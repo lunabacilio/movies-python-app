@@ -1,48 +1,30 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-#from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, jsonify
+
 import db, os, datetime
 from models import Movie
-from db import insert
+#from db import insert
+from db import delete
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-#db = SQLAlchemy(app)
 
-#class Pelicula(db.Model):
-#    id = db.Column(db.Integer, primary_key=True)
-#    titulo = db.Column(db.String(80), unique=True, nullable=False)
 if not os.path.isfile('movies.db'):
     db.connect()
 
 @app.route('/')
 def home():
     return render_template('home.html')
-    #return render_template('home.html', peliculas=movies.query.all())
 
-@app.route('/catalog', methods=['GET'])
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/catalog', methods=['GET']) #Put all data together
 def getRequest():
-    content_type = request.headers.get('Content-Type')
     mvs = [b.serialize() for b in db.view()]
-    if (content_type == 'application/json'):
-        json = request.json
-        for b in mvs:
-            if b['id'] == int(json['id']):
-                return jsonify({
-                    # 'error': '',
-                    'res': b,
-                    'status': '200',
-                    'msg': 'Success getting all movies in library!👍😀'
-                })
-        return jsonify({
-            'error': f"Error ⛔❌! Book with id '{json['id']}' not found!",
-            'res': '',
-            'status': '404'
-        })
-    else:
-        return render_template('catalog.html', peliculas=mvs)
+    return render_template('catalog.html', movies=mvs)
 
 
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['GET']) #Read data
 def getRequestId():
     id = request.args.get('id')
     mvs = [b.serialize() for b in db.view()]
@@ -56,10 +38,10 @@ def getRequestId():
     else:
         return render_template('search.html', pelicula=None)
 
-@app.route('/new_movie', methods=['GET', 'POST'])
+@app.route('/new_movie', methods=['GET', 'POST']) # Create data
 def newMovie():
     if request.method == 'POST':
-        title = request.form['title']
+        title = request.form['name']
         available = request.form['available'] == 'True'
         date = datetime.datetime.now()
         mv = Movie(db.getNewId(), available, title, date)
@@ -68,32 +50,28 @@ def newMovie():
     else:
         return render_template('new_movie.html')
 
-@app.route('/update_movie', methods=['GET','POST'])
-def updateMovie(id):
-    if request.method == 'PUT':
-        title = request.form['title']
-        available = request.form['available'] == 'True'
+@app.route('/update_movie', methods=['GET','POST']) #Update data
+def updateMovie():
+    if request.method == 'POST':
+        movie_id = request.form.get('movie_id')
+        available = request.form.get('available')
+        name = request.form.get('name')
         date = datetime.datetime.now()
-        mv = Movie(db.getNewId(), available, title, date)
+        mv = Movie(movie_id, available, name, date)
         db.update(mv)
         return render_template('success_update.html')
     else:
         return render_template('update_movie.html')
     
-@app.route('/delete_movie', methods=['GET', 'DELETE'])
-def deleteMovie(id):
+@app.route('/delete_movie', methods=['GET', 'POST']) # Delete data
+def delete_form():
     if request.method == 'POST':
-        req_args = request.view_args
-        bks = [b for b in db if b.id == id]
-        if req_args:
-            for b in bks:
-                if b['id'] == int(req_args['id']):
-                    db.delete(b['id'])
-                    updated_bks = [b.serialize() for b in db.view()]
+        movie_id = request.form.get('movie_id')
+        db.delete(movie_id)
         return render_template('success_delete.html')
     else:
         return render_template('delete.html')
-
+    
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)

@@ -1,14 +1,126 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete Movie</title>
+    <title>Eliminar Película</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            justify-content: flex-end;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            border-style: dotted;
+            justify-content: center;
+        }
+        .movie {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            height: 300px;
+        }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .left-menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .left-menu li {
+            margin: 0 10px;
+        }
+        .left-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .left-menu li a:hover {
+            color: #007bff;
+        }
+        
+        .right-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .right-menu li {
+            margin: 0 10px;
+        }
+        .right-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .right-menu li a:hover {
+            color: #007bff;
+        }
+        .home {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+        }
+        .home a {
+            color: #333;
+            text-decoration: none;
+        }
+        .home a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Delete Movie</h1>
-    <form action="/delete_movie" method="post"> <!-- Nota: los formularios HTML no admiten el método DELETE de forma nativa -->
-        <label for="id">Movie ID:</label>
-        <input type="text" id="id" name="id">
-        <input type="submit" value="Delete Movie">
-    </form>
+    <ul class="left-menu">
+        <li><a href="/">Home</a></li>
+    </ul>
+    <ul class="right-menu">
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/new_movie">Upload</a></li>
+        <li><a href="/update_movie">Update</a></li>
+        <li><a href="/delete_movie">Delete</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="center-content">
+        <h1>Delete Movie</h1>
+        <form action="/delete_movie" method="post">
+            <label for="movie_id">Movie ID:</label><br>
+            <input type="text" id="movie_id" name="movie_id"><br>
+            <input type="submit" value="Delete">
+        </form>
+        <div>
+            <a href="/catalog" >Back to catalog</a>
+            <a href="/" >Back to home</a>
+        </div>
+    </div>
 </body>
 </html>

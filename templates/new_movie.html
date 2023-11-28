@@ -1,22 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nueva Película</title>
+    <title>New Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            justify-content: flex-end;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            border-style: dotted;
+            justify-content: center;
+        }
+        .movie {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            height: 300px;
+        }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .left-menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .left-menu li {
+            margin: 0 10px;
+        }
+        .left-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .left-menu li a:hover {
+            color: #007bff;
+        }
+        
+        .right-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .right-menu li {
+            margin: 0 10px;
+        }
+        .right-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .right-menu li a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Nueva Película</h1>
-    <form action="/new_movie" method="post">
-        <label for="titulo">Name:</label>
-        <input type="text" id="titulo" name="titulo">
-        <label for="available">Availability:</label>
-        <select id="available" name="available">
-            <option value="True">Sí</option>
-            <option value="False">No</option>
-        </select>
-        <input type="submit" value="Agregar Película">
-    </form>
-    <div>
-        <a href="/" class="button">Back to home</a>
+    <ul class="left-menu">
+        <li><a href="/">Home</a></li>
+    </ul>
+    <ul class="right-menu">
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/new_movie">Upload</a></li>
+        <li><a href="/update_movie">Update</a></li>
+        <li><a href="/delete_movie">Delete</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+</head>
+    <div class="center-content">
+        <h1>Add New Movie</h1>
+        <form action="/new_movie" method="post">
+            <label for="titulo">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="available">Availability:</label>
+            <select id="available" name="available">
+                <option value="True">Sí</option>
+                <option value="False">No</option>
+            </select>
+            <input type="submit" value="Add movie">
+        </form>
+        <div>
+            <a href="/" class="button">Back to home</a>
+        </div>
     </div>
 </body>
 </html>

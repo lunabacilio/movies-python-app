@@ -2,32 +2,108 @@
 <html>
 <head>
     <title>Update Movie</title>
-    <script>
-        function submitForm(event) {
-            event.preventDefault();
-            var xhr = new XMLHttpRequest();
-            xhr.open("PUT", "/update_movie", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("titulo=" + document.getElementById("name").value + "&available=" + document.getElementById("available").value);
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-                    window.location.href = "/success_update";
-                }
-            };
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            justify-content: flex-end;
         }
-    </script>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            border-style: dotted;
+            justify-content: center;
+        }
+        .movie {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            height: 300px;
+        }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .left-menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .left-menu li {
+            margin: 0 10px;
+        }
+        .left-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .left-menu li a:hover {
+            color: #007bff;
+        }
+        
+        .right-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        .right-menu li {
+            margin: 0 10px;
+        }
+        .right-menu li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .right-menu li a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Update Movie</h1>
-    <form onsubmit="submitForm(event);">
-        <label for="titulo">Name:</label>
-        <input type="text" id="titulo" name="titulo">
-        <label for="available">Availability:</label>
-        <select id="available" name="available">
-            <option value="True">Sí</option>
-            <option value="False">No</option>
-        </select>
-        <input type="submit" value="Agregar Película">
-    </form>
+    <ul class="left-menu">
+        <li><a href="/">Home</a></li>
+    </ul>
+    <ul class="right-menu">
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/new_movie">Upload</a></li>
+        <li><a href="/update_movie">Update</a></li>
+        <li><a href="/delete_movie">Delete</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="center-content">
+        <h1>Update Movie</h1>
+        <form action="/update_movie" method="post">
+            <label for="movie_id">Movie ID to be changed:</label>
+            <input type="text" id="movie_id" name="movie_id">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="available">Availability:</label>
+            <select id="available" name="available">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+            <input type="submit" value="Update Movie">
+        </form>
+        <div>
+            <a href="/catalog" class="button">Catalog</a>
+        </div>
+    </div>
 </body>
 </html>
