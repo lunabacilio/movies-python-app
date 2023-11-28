@@ -15,6 +15,6 @@ jobs:
           docker image prune -f
           docker container prune -f
           docker container ls -a
-          docker build -t movies-python-app .
-          docker run --name movies-app-${{github.run_number}} -d -p 80:5000 movies-python-app
+          docker build -t movies-python-app-${{github.run_number}} .
+          docker run --name movies-app-${{github.run_number}} -d -p 80:5000 movies-python-app-${{github.run_number}}
           docker container ls -a
