@@ -5,8 +5,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: 
-      group: movie-app
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - run: |
