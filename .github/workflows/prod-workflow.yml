@@ -16,3 +16,4 @@ jobs:
           docker container ls -a
           docker build -t movies-python-app .
           docker run --name movies-app -d -p 80:5000 movies-python-app
+          docker container ls -a
